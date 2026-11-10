@@ -1,0 +1,52 @@
+Program Phases
+
+1. Rapid Ramp Up
+    a. Start with maxOutput at requiredFieldRate
+    b. Gradually increase output by 1% of generation rate.
+    c. Direct All Output to Field
+    d. Monitor temprature delta, if delta will cause temprature to increase past 8k, proceed to slow ramp up.
+    e. Monitor saturation delta, if delta will cause saturation to decrease below 15%, proceed to slow ramp up.
+    f. If new rate will decrease saturation below 15% within 20 ticks, abort and go to slow ramp up.
+2. Slow Ramp Up
+    a. Set output to current generation rate.
+    b. While temprature / saturation within allowed levels, increase output rate by 1% of generation rate or 10% of current saturation, whichever is lower.
+    c. Wait for generation rate to increase to match.
+    d. Set field to output rate (All power to shields.)
+    e. When temprature reaches 8k and saturation is in allowed range, Go to optimal.
+3. Recovery
+    a. Halt all ramp up procedures.
+    b. Set output to generation rate.
+    c. Set field to generation rate.
+    c. Decrease output by 10% of the difference between current saturation and target saturation.
+    d. Wait for saturation to recover to target level.
+    e. Set output to generation rate.
+    f. Wait for temprature to recover to safe levels.
+    g. Proceed to Slow ramp up.
+3. Optimal
+    a. Set output to generation rate.
+    b. If saturation full, go to idle.
+    c. While shield strength is above target levels, reduce energy supplied by 1% of current supply.
+    d. Wait for shield strength to stablize.
+4. Idle
+    a. As temprature drops, track field rate to required rate.
+    b. Set max output to requiredFieldRate + 2% of saturation.
+    c. If saturation drops below 100%, go to ramp up.
+5. Critical
+    a. Stop output.
+    b. Set emergency field input to 2* current field energy requirements.
+    c. Repeat until field has recovered.
+    d. Go to recovery.
+6. FAILED (Explosion Soon)
+    a. Sound alarm.
+    b. Engage final procedures.
+7. Disabled
+    a. Reactor disabled.
+8. Charging
+    a. Reactor charging.
+
+
+Failsafes
+a. Monitor temprature delta, if temprature delta will increase past 9k in the next 5 ticks. Go to recovery.
+b. Monitor field delta, if field strength below 5%, Go to critical.
+c. Monitor saturation delta, if saturation will fall below 10%, go to recovery.
+d. If fuel conversion exceeds 90%, and conversion delta will exceed 95%. Goto disabled. Reactor cycle complete.

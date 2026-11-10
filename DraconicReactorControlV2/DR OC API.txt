@@ -1,0 +1,45 @@
+flux gate API
+
+getSignalHighFlow
+canReceive
+setFlowOverride
+getEnergyStored
+getFlow
+setSignalLowFlow
+getMaxEnergyStored
+getSignalLowFlow
+setSignalHighFlow
+setOverrideEnabled
+canExtract
+getOverrideEnabled
+
+
+reactor API
+
+getReactorInfo
+getEnergyStored
+chargeReactor
+getMaxEnergyStored
+activateReactor
+stopReactor
+canReceive
+canExtract
+setFailSafe
+
+
+reactor info payload
+
+fuelConversion
+maxFuelConversion
+
+fieldDrainRate
+generationRate
+failSafe
+maxFieldStrength
+fieldStrengh
+energySaturation
+maxEnergySaturation
+fuelConversionRate
+temperature
+
+fieldInputRate = fieldDrainRate / (1 - (fieldStrengh / maxFieldStrength))
